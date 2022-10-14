@@ -67,4 +67,5 @@ int main() {
     }
   }
   cout<<"count="<<count<<endl;
- 
+ return 0;
+ }
