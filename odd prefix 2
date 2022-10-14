@@ -1,0 +1,84 @@
+//we obtain return the max odd prefix sums count in any arrangement of the array given and return the arrangement in lexoraphical order
+//ex: for 9,15,4,2,1
+//max odd prefix sums count = 4
+//for any arrangement of array, we should add the smallest odd and then all evens sorted, and then all remaining odds in the array.
+//this arrangement should give you the max odd prefix sum count
+//create even array and push the even and sort it 
+//create odd array and push the odd and sort it
+//merge them by the above described arrangement to obtain max odd prefix sum count
+//arrangement for above array be, 1,2,4,9,15
+//this arrangement formed for obtaining max prefix sum count must be the lexicographically smallest of all arrangements where max prefix sum count is possible
+#include <iostream>
+#include<vector>
+#include<bits/stdc++.h>
+using namespace std;
+
+bool isOdd(int num){
+  return num%2==0 ? false : true;
+}
+
+int main() {
+  int n;
+  cin >> n;
+  int count=0;
+  int merged[n];
+  vector<int> even;
+  vector<int> odd;
+  
+  for(int i=0; i<n; i++){
+    int num;
+    cin>>num;
+    if(isOdd(num)){
+      odd.push_back(num);
+    }
+    else{
+      even.push_back(num);
+    }
+    
+  }
+
+  sort(odd.begin(),odd.end());
+  sort(even.begin(),even.end());
+
+ 
+  int stop = 0;
+  merged[0] = odd[0];
+  for(int i=0; i<=even.size(); i++){
+
+    merged[i+1] = even[i];
+   
+    stop++;
+  }
+  
+
+  
+  for(int j = 1; j<n; j++){
+    
+    merged[stop] = odd[j];
+    stop++;
+    
+  }
+
+  int transformed[n];
+  transformed[0] = merged[0];
+  count = 1;
+  for(int i=1; i<n; i++){
+    transformed[i] = transformed[i-1] + merged[i];
+    if(isOdd(transformed[i])){
+      count++;
+    }
+  }
+  cout<<"count="<<count<<endl;
+ 
+  //lexographically smallest array is the merged one found for max odd prefix count
+  
+  
+   cout<<"merged array"<<endl;
+  for(int i=0; i<n; i++){
+   
+    cout<<merged[i]<<" ";
+  }
+  
+
+  return 0;
+}
