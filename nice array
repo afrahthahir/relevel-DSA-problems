@@ -2,7 +2,13 @@
 //if element not found, then subtract each element from total sum and div by 2 and then search the one element 
 //return the position of the one element in array
 //position starts from 1
-
+//ex: 2,1,5,3,4
+//sum = 15 ans = 15/2=7 not in array
+//15-2 = 13/2=6 not in array
+//15-1 = 14/2=7 not in array
+//15-5 = 10/2=5 in array position 2
+//start position from 1 so, 5 is in 3rd pos
+//return 3
 
 
 #include <iostream>
