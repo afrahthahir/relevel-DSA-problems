@@ -1,0 +1,59 @@
+//nice array means the sum of elements of array/2 = one of the element in array
+//if element not found, then subtract each element from total sum and div by 2 and then search the one element 
+//return the position of the one element in array
+//position starts from 1
+
+
+
+#include <iostream>
+#include <unordered_map>
+using namespace std;
+
+int main() {
+  unordered_map<int, int> map;
+  int n;
+  cin >> n;
+  int arr[n];
+
+  for (int i = 0; i < n; i++) {
+    cin >> arr[i];
+  }
+
+  for (int i = 0; i < n; i++) {
+    map[arr[i]] = i;
+  }
+
+
+  int sum = 0;
+  for (int i = 0; i < n; i++) {
+    sum = sum + arr[i];
+  }
+  int ans = 0;
+  ans = sum / 2;
+  // cout<<sum<<endl;
+   cout<<ans<<endl;
+  int gsum = sum;
+  int c = 0;
+  for (int i = 0; i < n; i++) {
+
+    if (map.find(ans) != map.end()) {
+      c = arr[i];
+      break;
+    }
+    sum = gsum - arr[i];
+    ans = sum / 2;
+  }
+
+  for (int i = 0; i < n; i++) {
+    if (c == arr[i]) {
+      cout << i + 1 << endl;
+      break;
+    }
+  }
+
+  if (map.find(c) == map.end()) {
+    cout << "-1" << endl;
+  }
+
+  return 0;
+}
