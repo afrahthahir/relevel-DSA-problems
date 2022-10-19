@@ -9,7 +9,7 @@
 //15-5 = 10/2=5 in array position 2
 //start position from 1 so, 5 is in 3rd pos
 //return 3
-
+//if still there is no match in array, then return -1
 
 #include <iostream>
 #include <unordered_map>
